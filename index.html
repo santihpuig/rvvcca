@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>RVVCCA</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+      rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="console">
+        <h2>Cada punto simboliza una estación de medición de la <a
+        target="_blank"
+        href="https://agroambient.gva.es/es/web/calidad-ambiental/red-valenciana-de-vigilancia-y-control-de-la-contaminacion-atmosferica">
+        RVVCCA 
+      </a> 
+      <b>y en él se representa la concentración del contaminante NO2 (ug/m<sup>3</sup>)</b> a través de una escala de color y de un tamaño, así como su evolución a lo largo de las horas del día.</h2>
+      <div class="session">
+        <div class="row colors"></div>
+        <div class="row labels">
+          <div class="label">10</div>
+          <div class="label">20</div>
+          <div class="label">30</div>
+          <div class="label">40</div>
+          <div class="label">+50</div>
+        </div>
+      </b>
+      </div>
+      <div class="session" id="sliderbar">
+        <h3><label id="active-hour">12 hrs.</label></h3>
+        <input
+          id="slider"
+          class="row"
+          type="range"
+          min="0"
+          max="23"
+          step="1"
+          value="12" />
+      </div>
+      <div class="session">
+        <h2>El <b>anillo central que se mantiene fijo</b> representa el valor medio de esa estación a lo largo de todo un año. Si pasas el cursor por encima de él, se visualizará ese valor.<br><br>
+          En función de la <b>velocidad del viento</b>, el valor medio de la concentración varía, al ser el contaminante más o menos disispado.</h2>
+        <div id="filters">
+          <input
+            id="all"
+            type="radio"
+            name="toggle"
+            value="all"
+            checked="checked" />
+          <label for="all">Todas las condiciones</label><br>
+          <input id="calma" type="radio" name="toggle" value="calma" />
+          <label for="calma">Calma (0-2 km/h)</label><br>
+          <input id="muybaja" type="radio" name="toggle" value="muybaja" />
+          <label for="muybaja">Muy baja (2-6 km/h)</label><br>
+          <input id="baja" type="radio" name="toggle" value="baja" />
+          <label for="baja">Baja (6-12 km/h)</label><br>
+          <input id="moderada" type="radio" name="toggle" value="moderada" />
+          <label for="moderada">Moderada (12-20 km/h)</label><br>
+          <input id="alta" type="radio" name="toggle" value="alta" />
+          <label for="alta">Alta (20-30 km/h)</label><br>
+          <input id="muyalta" type="radio" name="toggle" value="muyalta" />
+          <label for="muyalta">Muy alta (>30 km/h)</label><br>
+        </div>
+      </div>
+      <h2>Todos los datos se refieren al año 2022.</h2>
+    </div>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+    <script src="js/mapa.js"></script>
+    <script src="js/estaciones.js"></script>
+    <script src="js/popup.js"></script>
+  </body>
+</html>
