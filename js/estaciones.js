@@ -1,4 +1,4 @@
-// datos
+// origen de los datos
 
 var datos = {
   type: "geojson",
@@ -10,7 +10,7 @@ var media = {
   data: "data/media.geojson",
 };
 
-// estilo círculos
+// estilo de los círculos
 
 var circulosMedia = {
   "circle-radius": ["/", ["-", 5, ["number", ["get", "avg"], 0.5]], 1],
@@ -35,10 +35,10 @@ var circulos = {
   "circle-opacity": 1,
 };
 
-// condiciones
+// carga datos con filtros
 
 map.on("load", function () {
-  var filtroHora = ["==", ["number", ["get", "hour"]], 12];
+  var filtroHora = ["==", ["number", ["get", "hour"]], 8];
   var filtroViento = ["match", ["get", "viento"], "todas", true, false];
 
   map.addLayer({
@@ -59,19 +59,18 @@ map.on("load", function () {
   document.getElementById("slider").addEventListener("input", function (e) {
     const hour = parseInt(e.target.value);
 
-    // update the map
+    // actualiza el mapa
     filtroHora = ["==", ["number", ["get", "hour"]], hour];
     map.setFilter("mediciones", ["all", filtroHora, filtroViento]);
 
-    // update text in the UI
+    // actualiza el texto en la consola
     document.getElementById("active-hour").innerText = hour + " hrs.";
   });
 
-  // aún no se
+  // filtra en función de las condiciones
 
   document.getElementById("filters").addEventListener("change", (event) => {
     const condiciones = event.target.value;
-    // update the map filter
     if (condiciones === "all") {
       filtroViento = ["match", ["get", "viento"], "todas", true, false];
     } else if (condiciones === "calma") {

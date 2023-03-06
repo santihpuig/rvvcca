@@ -10,7 +10,7 @@ map.on("mouseenter", "medias", function (e) {
   map.getCanvas().style.cursor = "pointer";
 
   var coordinates = e.features[0].geometry.coordinates.slice();
-  var description = e.features[0].properties.avg + " ug/m<sup>3</sup>";
+  var description = "<b>" + e.features[0].properties.avg + " µg/m<sup>3</sup>";
 
   // Ensure that if the map is zoomed out such that multiple
   // copies of the feature are visible, the popup appears
