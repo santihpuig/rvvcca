@@ -6,18 +6,16 @@
     <title>RVVCCA</title>
     <meta
       name="viewport"
-      content="initial-scale=1,maximum-scale=1,user-scalable=no"
-    />
+      content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
     <div id="main">
       <button class="openbtn" onclick="openNav()">
-        <h1>&#129300; Leyenda</h1>
+        <h1>&#129300; ¿Cómo se lee?</h1>
       </button>
       <div id="map"></div>
     </div>
@@ -28,11 +26,31 @@
       <div id="console">
         <h2>
           Cada <b>círculo</b> del mapa se ubica sobre una estación de medición
-          de la calidad del aire y representa la concentración del contaminante
-          <b>NO<sub>2</sub></b> los días laborables del año <b>2022</b> a través
-          de una escala de color y tamaño.
+          de la calidad del aire. Junto al nombre de cada una de ellas, aparece
+          la concentración media del contaminante <b>NO<sub>2</sub></b> en los
+          días laborables del año <b>2022</b>
+        </h2>
+        <h2>
+          Sin embargo, este valor varía notablemente a lo largo de las horas del
+          día. Si mueves el <b>deslizador horario</b> verás como los círculos
+          cambian de tamaño y color en función del mismo. Pasando el cursor
+          sobre ellos podrás obtener el valor medio para cada franja horaria en
+          cada estación.
         </h2>
         <div class="session">
+          <div class="session" id="sliderbar">
+            <h1>
+              <b><label id="active-hour">8 hrs.</label></b>
+            </h1>
+            <input
+              id="slider"
+              class="row"
+              type="range"
+              min="0"
+              max="23"
+              step="1"
+              value="8" />
+          </div>
           <h2><b>Concentración (µg/m<sup>3</sup>)</b></h2>
           <div class="row colors"></div>
           <div class="row labels">
@@ -45,30 +63,16 @@
             </h3>
           </div>
         </div>
-        <h2>Este valor medio evoluciona a lo largo de las horas del día.</h2>
-        <div class="session" id="sliderbar">
-          <h1>
-            <b><label id="active-hour">8 hrs.</label></b>
-          </h1>
-          <input
-            id="slider"
-            class="row"
-            type="range"
-            min="0"
-            max="23"
-            step="1"
-            value="8"
-          />
-        </div>
+        <h2></h2>
+
         <div class="session">
           <h2>
-            El <b>anillo central que se mantiene fijo</b> representa el valor
-            medio de esa estación a lo largo de todo un año. Pasando el cursor
-            por encima de él, se visualizará este valor.<br /><br />
-            Además, en función de la <b>velocidad del viento</b>, la
+            Además, en función de la <b>velocidad del viento</b>, esta
             concentración media varía, al ser el contaminante menos o más
-            disispado. La barra de la derecha indica la frecuencia con que se
-            registra cada condición.
+            disipado. Puedes alternar entre diferentes condiciones del viento
+            para comprobar cómo afecta a la concentración del contaminante. La
+            barra de la derecha indica la frecuencia con que se registra cada
+            velocidad.
           </h2>
           <h3>
             <div id="filters">
@@ -77,8 +81,7 @@
                 type="radio"
                 name="toggle"
                 value="all"
-                checked="checked"
-              />
+                checked="checked" />
               <label for="all"
                 >Todas las condiciones <span class="cien">100%</span></label
               ><br />
@@ -98,8 +101,7 @@
                 id="moderada"
                 type="radio"
                 name="toggle"
-                value="moderada"
-              />
+                value="moderada" />
               <label for="moderada"
                 >Moderada (12-20 km/h) <span class="catorce">14%</span></label
               ><br />
@@ -118,14 +120,15 @@
             Datos:
             <a
               target="_blank"
-              href="https://agroambient.gva.es/es/web/calidad-ambiental/red-valenciana-de-vigilancia-y-control-de-la-contaminacion-atmosferica"
-            >
+              href="https://agroambient.gva.es/es/web/calidad-ambiental/red-valenciana-de-vigilancia-y-control-de-la-contaminacion-atmosferica">
               Red Valenciana de Vigilancia y Control de la Contaminación
               Atmosférica (2022)
             </a>
             <a target="_blank" href="https://www.aemet.es/es/portada"
               >AEMET (2022)</a
-            >
+            ><br />
+            Visualización:
+            <a target="_blank" href="https://webmesura.org/">MESURA</a>
           </h2>
         </div>
       </div>

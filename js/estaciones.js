@@ -10,15 +10,20 @@ var media = {
   data: "data/media.geojson",
 };
 
-// estilo de los círculos
+// estilos
 
-var circulosMedia = {
-  "circle-radius": ["/", ["-", 5, ["number", ["get", "avg"], 0.5]], 1],
-  "circle-stroke-color": "#ffb703",
-  "circle-color": "#ffb703",
-  "circle-stroke-width": 1,
-  "circle-stroke-opacity": 1,
-  "circle-opacity": 0,
+var textoMedias = {
+  "text-field": ["get", "etiqueta"],
+  "text-font": ["Arial Unicode MS Bold"],
+  "text-anchor": "bottom-left",
+  "text-justify": "left",
+  "text-size": 12,
+};
+
+var circuloMedias = {
+  "text-halo-color": "rgba(255, 255, 255, 0.9)",
+  "text-halo-width": 2,
+  "text-color": "#03071e",
 };
 
 var circulos = {
@@ -51,9 +56,10 @@ map.on("load", function () {
 
   map.addLayer({
     id: "medias",
-    type: "circle",
+    type: "symbol",
     source: media,
-    paint: circulosMedia,
+    paint: circuloMedias,
+    layout: textoMedias,
   });
 
   document.getElementById("slider").addEventListener("input", function (e) {

@@ -5,7 +5,7 @@ var popup = new mapboxgl.Popup({
   closeOnClick: false,
 });
 
-map.on("mouseenter", "medias", function (e) {
+map.on("mouseenter", "mediciones", function (e) {
   // Change the cursor style as a UI indicator.
   map.getCanvas().style.cursor = "pointer";
 
@@ -24,7 +24,7 @@ map.on("mouseenter", "medias", function (e) {
   popup.setLngLat(coordinates).setHTML(description).addTo(map);
 });
 
-map.on("mouseleave", "medias", function () {
+map.on("mouseleave", "mediciones", function () {
   map.getCanvas().style.cursor = "";
   popup.remove();
 });

@@ -1,90 +1,17 @@
 {
-  "type": "FeatureCollection",
-  "name": "media",
-  "crs": {
-    "type": "name",
-    "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
-  },
-  "features": [
-    {
-      "type": "Feature",
-      "properties": { "nom": "Pista Silla", "avg": 20 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.376618525258912, 39.458053557981053]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Politécnico", "avg": 13 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.337321578720154, 39.47950243248075]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Valencia Centro", "avg": 24 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.376334997506107, 39.470783954081995]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Avda. Francia", "avg": 13 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.342708606023448, 39.457443973312529]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Viveros", "avg": 17 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.369530331438788, 39.479474079705476]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Valencia Olivereta", "avg": 40 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.406027441418601, 39.469231639635403]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Molí del Sol", "avg": 18 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.408557926612385, 39.481139805253193]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Puerto llit antic Túria", "avg": 33 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.328929157237129, 39.45046919059353]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Bulevard Sud", "avg": 23 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.396295351303573, 39.450369955880056]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nom": "Puerto Moll Trans. Ponent", "avg": 31 },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-0.323201896630468, 39.459258550930478]
-      }
-    }
-  ]
+"type": "FeatureCollection",
+"name": "media",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "nom": "Pista Silla", "avg": 20, "etiqueta": "Avda. Filipinas (Pista Silla) - 20 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.376618525258912, 39.458053557981053 ] } },
+{ "type": "Feature", "properties": { "nom": "Politécnico", "avg": 13, "etiqueta": "Campus de Vera UPV - 13 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.337321578720154, 39.47950243248075 ] } },
+{ "type": "Feature", "properties": { "nom": "Valencia Centro", "avg": 24, "etiqueta": "Plaça Ajuntament - 24 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.376334997506107, 39.470783954081995 ] } },
+{ "type": "Feature", "properties": { "nom": "Avda. Francia", "avg": 13, "etiqueta": "Avda. França - 13 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.342708606023448, 39.457443973312529 ] } },
+{ "type": "Feature", "properties": { "nom": "Viveros", "avg": 17, "etiqueta": "Jardí de Vivers - 17 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.369530331438788, 39.479474079705476 ] } },
+{ "type": "Feature", "properties": { "nom": "Valencia Olivereta", "avg": 40, "etiqueta": "Hospital General - 40 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.406027441418601, 39.469231639635403 ] } },
+{ "type": "Feature", "properties": { "nom": "Molí del Sol", "avg": 18, "etiqueta": "Molí del Sol - 18 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.408557926612385, 39.481139805253193 ] } },
+{ "type": "Feature", "properties": { "nom": "Puerto llit antic Túria", "avg": 33, "etiqueta": "Port (Llit antic Túria) - 33 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.328929157237129, 39.45046919059353 ] } },
+{ "type": "Feature", "properties": { "nom": "Bulevard Sud", "avg": 23, "etiqueta": "Bulevar Sud - 23 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.396295351303573, 39.450369955880056 ] } },
+{ "type": "Feature", "properties": { "nom": "Puerto Moll Trans. Ponent", "avg": 31, "etiqueta": "Port (Moll Trans. Ponent) - 31 ug/m3" }, "geometry": { "type": "Point", "coordinates": [ -0.323201896630468, 39.459258550930478 ] } }
+]
 }
