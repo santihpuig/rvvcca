@@ -58,7 +58,7 @@ var estiloViento = {
 };
 
 var layoutViento = {
-  "icon-image": "flecha", // reference the image
+  "icon-image": "flecha",
   "icon-size": [
     "interpolate",
     ["linear"],
@@ -86,7 +86,7 @@ map.on("load", function () {
   var filtroHora = ["==", ["number", ["get", "hour"]], 8];
   var filtroViento = ["match", ["get", "viento"], "todas", true, false];
 
-  map.loadImage("/css/arrow.png", (error, image) => {
+  map.loadImage("css/arrow.png", (error, image) => {
     if (error) throw error;
 
     map.addImage("flecha", image);
@@ -151,31 +151,23 @@ map.on("load", function () {
     map.setFilter("mediciones", ["all", filtroHora, filtroViento]);
   });
 
-  // After the last frame rendered before the map enters an "idle" state.
+  // Visualizar vientos dominantes
   map.on("idle", () => {
-    // If these two layers were not added to the map, abort
     if (!map.getLayer("Visualizar vientos dominantes [x]")) {
       return;
     }
-
-    // Enumerate ids of the layers.
     const toggleableLayerIds = ["Visualizar vientos dominantes [x]"];
 
-    // Set up the corresponding toggle button for each layer.
     for (const id of toggleableLayerIds) {
-      // Skip layers that already have a button set up.
       if (document.getElementById(id)) {
         continue;
       }
-
-      // Create a link.
       const link = document.createElement("a");
       link.id = id;
       link.href = "#";
       link.textContent = id;
       link.className = "active";
 
-      // Show or hide layer when the toggle is clicked.
       link.onclick = function (e) {
         const clickedLayer = this.textContent;
         e.preventDefault();
@@ -183,7 +175,6 @@ map.on("load", function () {
 
         const visibility = map.getLayoutProperty(clickedLayer, "visibility");
 
-        // Toggle layer visibility by changing the layout object's visibility property.
         if (visibility === "visible") {
           map.setLayoutProperty(clickedLayer, "visibility", "none");
           this.className = "";
