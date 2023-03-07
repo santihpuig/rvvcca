@@ -1,13 +1,18 @@
 // origen de los datos
 
-var datos = {
+var medicionesHorarias = {
   type: "geojson",
   data: "data/medicion.geojson",
 };
 
-var media = {
+var mediasAnuales = {
   type: "geojson",
   data: "data/media.geojson",
+};
+
+var vientosDominantes = {
+  type: "geojson",
+  data: "data/viento.geojson",
 };
 
 // estilos
@@ -26,8 +31,16 @@ var circuloMedias = {
   "text-color": "#03071e",
 };
 
-var circulos = {
-  "circle-radius": ["/", ["-", 5, ["number", ["get", "avg"], 0.25]], 1],
+var circuloEstaciones = {
+  "circle-radius": [
+    "interpolate",
+    ["linear"],
+    ["number", ["get", "avg"]],
+    10,
+    10,
+    60,
+    60,
+  ],
   "circle-color": [
     "interpolate",
     ["linear"],
@@ -40,24 +53,65 @@ var circulos = {
   "circle-opacity": 1,
 };
 
+var estiloViento = {
+  "icon-opacity": 0.35,
+};
+
+var layoutViento = {
+  "icon-image": "flecha", // reference the image
+  "icon-size": [
+    "interpolate",
+    ["linear"],
+    ["number", ["get", "avgveloc"]],
+    1.83,
+    0.2,
+    2.42,
+    0.6,
+  ],
+  "icon-rotate": [
+    "interpolate",
+    ["linear"],
+    ["number", ["get", "avgdirec"]],
+    1,
+    1,
+    360,
+    360,
+  ],
+  visibility: "none",
+};
+
 // carga datos con filtros
 
 map.on("load", function () {
   var filtroHora = ["==", ["number", ["get", "hour"]], 8];
   var filtroViento = ["match", ["get", "viento"], "todas", true, false];
 
+  map.loadImage("/css/arrow.png", (error, image) => {
+    if (error) throw error;
+
+    map.addImage("flecha", image);
+  });
+
+  map.addLayer({
+    id: "Visualizar vientos dominantes [x]",
+    type: "symbol",
+    source: vientosDominantes,
+    paint: estiloViento,
+    layout: layoutViento,
+  });
+
   map.addLayer({
     id: "mediciones",
     type: "circle",
-    source: datos,
-    paint: circulos,
+    source: medicionesHorarias,
+    paint: circuloEstaciones,
     filter: ["all", filtroHora, filtroViento],
   });
 
   map.addLayer({
     id: "medias",
     type: "symbol",
-    source: media,
+    source: mediasAnuales,
     paint: circuloMedias,
     layout: textoMedias,
   });
@@ -95,5 +149,52 @@ map.on("load", function () {
       console.error("error");
     }
     map.setFilter("mediciones", ["all", filtroHora, filtroViento]);
+  });
+
+  // After the last frame rendered before the map enters an "idle" state.
+  map.on("idle", () => {
+    // If these two layers were not added to the map, abort
+    if (!map.getLayer("Visualizar vientos dominantes [x]")) {
+      return;
+    }
+
+    // Enumerate ids of the layers.
+    const toggleableLayerIds = ["Visualizar vientos dominantes [x]"];
+
+    // Set up the corresponding toggle button for each layer.
+    for (const id of toggleableLayerIds) {
+      // Skip layers that already have a button set up.
+      if (document.getElementById(id)) {
+        continue;
+      }
+
+      // Create a link.
+      const link = document.createElement("a");
+      link.id = id;
+      link.href = "#";
+      link.textContent = id;
+      link.className = "active";
+
+      // Show or hide layer when the toggle is clicked.
+      link.onclick = function (e) {
+        const clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const visibility = map.getLayoutProperty(clickedLayer, "visibility");
+
+        // Toggle layer visibility by changing the layout object's visibility property.
+        if (visibility === "visible") {
+          map.setLayoutProperty(clickedLayer, "visibility", "none");
+          this.className = "";
+        } else {
+          this.className = "active";
+          map.setLayoutProperty(clickedLayer, "visibility", "visible");
+        }
+      };
+
+      const layers = document.getElementById("menu");
+      layers.appendChild(link);
+    }
   });
 });
